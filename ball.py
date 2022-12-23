@@ -25,3 +25,8 @@ class Ball(Turtle):
     # Bounce the ball from left and right paddle
     def bounce_x(self):
         self.x_move *= -1
+
+    # Reset Position of ball
+    def reset_position(self):
+        self.goto(0, 0)
+        self.bounce_x()
