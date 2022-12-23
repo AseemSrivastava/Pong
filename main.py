@@ -1,6 +1,7 @@
 import turtle
 from turtle import Screen
 from turtle import Turtle
+from paddle import Paddle
 
 screen = Screen()
 # Set Screen Color to black
@@ -11,33 +12,14 @@ screen.setup(800, 600)
 screen.title("Pong")
 screen.tracer(0)
 
-paddle = Turtle()
-# Set Position of Paddle
-paddle.setposition(350, 0)
-# Set Paddle color
-paddle.color("white")
-# Set Paddle shape
-paddle.shape("square")
-# Set paddle size
-paddle.shapesize(stretch_wid=5, stretch_len=1)
-paddle.penup()
-
-
-# Move paddle up
-def go_up():
-    new_y = paddle.ycor() + 20
-    paddle.goto(paddle.xcor(), new_y)
-
-
-# Move paddle down
-def go_down():
-    new_y = paddle.ycor() - 20
-    paddle.goto(paddle.xcor(), new_y)
-
+r_paddle = Paddle((350, 0))
+l_paddle = Paddle((-350, 0))
 
 screen.listen()
-screen.onkey(go_up, "Up")
-screen.onkey(go_down, "Down")
+screen.onkey(r_paddle.go_up, "Up")
+screen.onkey(r_paddle.go_down, "Down")
+screen.onkey(l_paddle.go_up, "w")
+screen.onkey(l_paddle.go_down, "s")
 
 game_is_on = True
 while game_is_on:
